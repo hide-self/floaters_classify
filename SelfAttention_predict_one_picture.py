@@ -188,7 +188,7 @@ def load_model(model_path, model_type='cnn', num_classes=2):
     else:
         raise ValueError("model_type 应为 'cnn' 或 'sa_cnn'")
 
-    model.load_state_dict(torch.load(model_path, map_location='cpu'))
+    model.load_state_dict(torch.load(model_path, map_location='cpu', weights_only=True))
     model.eval()
     return model
 
@@ -219,8 +219,8 @@ def predict_image(image_path, model, class_names, mean, std):
 
 if __name__ == '__main__':
     # ====== 请修改以下参数 ======
-    MODEL_PATH = './best_floaters_cnn.pth'  # 训练保存的模型
-    IMAGE_PATH = './test_image.jpg'  # 待预测图片
+    MODEL_PATH = './best_floaters_sa_cnn.pth'  # 训练保存的模型
+    IMAGE_PATH = './test_images/s1.jpg'  # 待预测图片
     MODEL_TYPE = 'sa_cnn'  # 与训练时一致
     DATA_ROOT = './Trash_floaters_exist_classify'  # 数据集根目录（仅用于计算归一化参数）
     # ===========================
